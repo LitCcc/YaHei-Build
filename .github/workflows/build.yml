@@ -15,7 +15,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Grab latest version
       run: |
-        curl -L https://api.github.com/repos/be5invis/Sarasa-Gothic/releases/latest -o api.json
+        curl -L https://github.com/jonz94/Sarasa-Gothic-Nerd-Fonts/releases/latest -o api.json
         UPSTREAM_VERSION=$(cat api.json | jq -r .tag_name)
         DOWNLOAD_URL=$(cat api.json | jq -r '.assets[] | select(.name | test("sarasa-gothic-sc-nerd-font")) | .browser_download_url')
         echo "UPSTREAM_VERSION=$UPSTREAM_VERSION" >> $GITHUB_ENV
