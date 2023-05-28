@@ -13,13 +13,14 @@ jobs:
     - name: Install dependencies
       run: pacman -Syu --noconfirm git fontforge curl p7zip jq
     - uses: actions/checkout@v3
-    - name: Grab latest version
-      run: |
-        curl -L https://github.com/jonz94/Sarasa-Gothic-Nerd-Fonts/releases/latest -o api.json
-        UPSTREAM_VERSION=$(cat api.json | jq -r .tag_name)
-        DOWNLOAD_URL=$(cat api.json | jq -r '.assets[] | select(.name | test("sarasa-gothic-sc")) | .browser_download_url')
-        echo "UPSTREAM_VERSION=$UPSTREAM_VERSION" >> $GITHUB_ENV
-        echo "DOWNLOAD_URL=$DOWNLOAD_URL" >> $GITHUB_ENV
+    - name: Grab latest version  
+      run: |  
+        curl -L https://github.com/jonz94/Sarasa-Gothic-Nerd-Fonts/releases/latest -o api.json  
+        UPSTREAM_VERSION=$(cat api.json | jq -r .tag_name)  
+        DOWNLOAD_URL=$(cat api.json | jq -r '.assets[] | select(.name | test("sarasa-gothic-sc")) | .browser_download_url')  
+        echo "UPSTREAM_VERSION=$UPSTREAM_VERSION" >> $GITHUB_ENV  
+        echo "DOWNLOAD_URL=$DOWNLOAD_URL" >> $GITHUB_ENV  
+
     - name: Download font
       run: curl -Lvo /tmp/ttc.7z $DOWNLOAD_URL
     - name: Extract font
